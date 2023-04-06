@@ -1,1 +1,1 @@
-# Data-compression-Platform
+# data-compression-platform
