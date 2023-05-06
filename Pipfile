@@ -9,6 +9,8 @@ tensorflow = "*"
 tensorflow-hub = "*"
 pillow = "*"
 matplotlib = "*"
+opencv-python = "*"
+tensorrt = "*"
 
 [dev-packages]
 
