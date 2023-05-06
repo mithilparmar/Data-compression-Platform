@@ -1,0 +1,22 @@
+import cv2
+
+
+class VideoWriter():
+
+    def __init__(self,filename,fourcc,fps,aspect_rat):
+        self.out_vid = cv2.VideoWriter(filename, fourcc, fps, aspect_rat)
+
+    def compress(self,frames,isComp):
+
+        for frame,i in zip(frames,isComp):
+
+            out = frame
+            if i:
+                out = cv2.resize(frame, (960, 540))
+                out = cv2.copyMakeBorder(out, 540, 0, 960, 0, cv2.BORDER_CONSTANT, value = (0, 0, 0))
+
+            self.out_vid.write(out)
+            
+    def close_video(self):
+        self.out_vid.release()
+            

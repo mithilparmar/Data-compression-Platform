@@ -99,7 +99,7 @@ class Compressor:
         ret_vid = []
         is_comp = []
         frame_count = 1
-        while frame_count < 4:
+        while success:
             success, img = video.read()
 
             cv2.imwrite("temp.jpg",img)
