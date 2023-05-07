@@ -87,7 +87,7 @@ class Compressor:
         
         #h, w = frame1.shape
         diff= frame1-frame2
-        err = np.sum(diff**2)
+        err = np.sqrt(np.sum(diff**2))
         #mse = err/(float(h*w))
         return err
 
@@ -99,7 +99,7 @@ class Compressor:
         ret_vid = []
         is_comp = []
         frame_count = 1
-        while success:
+        while frame_count < 4:
             success, img = video.read()
 
             cv2.imwrite("temp.jpg",img)

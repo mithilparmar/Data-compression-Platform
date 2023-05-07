@@ -1,5 +1,5 @@
 import cv2
-
+import numpy as np
 
 class VideoWriter():
 
@@ -19,4 +19,18 @@ class VideoWriter():
             
     def close_video(self):
         self.out_vid.release()
-            
+
+class VideoReader():
+
+    def __init__(self,filename):
+        self.video = cv2.VideoCapture(filename)
+        
+    def decompress(self):
+        resized_frames = []
+        i = 0
+        while True:
+            ret, frame = self.video.read()
+            if not ret: break
+            if np.sum(frame[:540, :960, :]) == 0: resized_frames.append(i)
+            i += 1
+        
