@@ -19,7 +19,7 @@ def compress_video():
     print(request.form)
     request.files["file"].save(dst="original_video.mp4")
 
-    c = Compressor(0.5)
+    c = Compressor(0.5,"https://tfhub.dev/captain-pool/esrgan-tf2/1")
     c.compress_vid("original_video.mp4")
     return send_file('../demo.mp4')
 
