@@ -6,7 +6,7 @@ class VideoWriter:
 
     # Class to write a video to file
 
-    def _init_(self, filename, fourcc, fps, aspect_rat): 
+    def __init__(self, filename, fourcc, fps, aspect_rat): 
       
       # Input Arguments:
       # filename: path + name of the file where the output file is to be written

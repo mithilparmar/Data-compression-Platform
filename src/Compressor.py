@@ -15,7 +15,7 @@ class Compressor:
 
     # Class to compress the videos
 
-    def _init_(self, thresh, model_path) -> None:
+    def __init__(self, thresh, model_path) -> None:
 
         # Input Arguments:
         # thresh: value of RMSE below which the frames will be downscaled
