@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../static/index.css">
+    <title>Data Compression</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <span class="header-letter">D</span>ATA <span class="header-letter">C</span>OMPRESSION
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="about">
+        <h2 class="index-heading mt-3">Data Compression with Deep Learning</h2>
+        <p class="text-center">-Jayam Thaker, Ishan Malkan, Mithil Parmar & Yash Trivedi
+            
+        </p>
+
+        <img src="https://cc-prod.scene7.com/is/image/CCProdAuthor/Reduce-video-size_marquee_900x420?$pjpeg$&jpegSize=200&wid=900"
+            class="rounded mx-auto d-block mt-5" alt="compression">
+
+        <h3 class="mt-5">Using Deep Learning to compress video</h3>
+        <p>
+            While many traditional video compression algorithms have
+            been developed. We believe that ML-based approaches can be
+            used to improve those results and the current state-of-the-art of
+            ML-based video compression algorithms is lacking in that
+            regard. Another thing we found lacking in the existing solutions
+            was domain-specific compression methods. While the
+            algorithms extract common features from a video to compress
+            it, the algorithms themselves tend not to be fine-tuned for
+            specific domains. Using ML-based models, we believe we can
+            also address this second issue. The ML models can be trained
+            on specific domains to better fit the videos. These models can
+            then be shared between users or joined with the compressed file
+            which can be later used to decompress the images. 
+
+        </p>
+        <p>
+            We believe that we can use the recent advents in Machine Learning especially in the fields of Computer Vision to
+             effectively comprees videos by removing some features and relying on the Deep Learning models to fill in the details.
+
+             It is strictly speaking a lossy compression method as there is some scope for the data to get lost in between.
+        </p>
+        <h3>Method</h3>
+        <img src="../static/architecture_compressor.png" height="500" class="rounded mx-auto d-block mt-5" alt="compression">
+        <p>
+            We have two components in our project, the compressor, and the decompressor. Inside the compressor, the video is divided into frames and each frame is downscaled and passed through the SR-GAN model, then, the result is compared with the
+            original frame and if the difference is below a threshold, the
+            downscaled version is saved after padding else the frame is
+            saved as it is. On the decompressor side, the padded frames are
+            identified, the downscaled portions are extracted and passed
+            through the model, and attached back with the video to recreate
+            the video in the original resolution. The details on each
+            component such as the descaling and the model, etc. will be
+            covered in detail in the next section. The following two
+            diagrams display the architecture of the compressor and the
+            decompressor. 
+        </p>
+        <img src="../static/architecture_decompressor.png" height="500" class="rounded mx-auto d-block mt-5" alt="compression">
+
+
+        <h3 class="mt-5">Our Approach</h3>
+        <img src="../static/SRGAN.png" width="1000" class="rounded mx-auto d-block mt-5" alt="compression">
+        <p>
+            We combine a deep learning based model for frame upscaling. We use a model called SR-GAN for the task. 
+            SR-GAN is a model that takes an image as input and upscales it by 4x. While we make use of this model. Other models can also be used
+            in the framework. The only requirment is that the model should upscale the image by some amout.
+
+            A model for upsampling can also be trained on some specific 
+            set of data to obtain better compression on that domain and then uploaded to the directory for ease of use during decompression.
+        </p>
+       
+        <h3>Results</h3>
+        <p>Hence with an average of 0.16 RMSE, we were able to reduce
+            the video size by 4 times (the model we used performs 4x superresolution as mentioned in one of the previous sections), and
+            when we set the threshold value as the median of the RMSE
+            values of each frame, our average RMSE reached 0.07 and the
+            video size became 0.5 + (0.5*0.25) = 0.625 (62.5%) of the
+            original size. Playing around with these values gave us a general
+            idea of how the model is performing and what areas require
+            more training</p>
+    </div>
+
+
+</body>
+
+</html>
